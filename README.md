@@ -4,6 +4,13 @@
 3. generate - ✅
 4. write query - ✅
 
+##
+
+1. create
+2. findMany - array of object
+3. findUnique - return single object
+4. findUniqueOrThrow - return single object if exist, otherwise throw error
+
 # Prisma ORM vs Sequelize vs TypeORM
 
 ## 1. Comparison: Prisma vs Sequelize vs TypeORM
