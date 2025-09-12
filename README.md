@@ -1,3 +1,9 @@
+1. Write schema - ✅
+2. migrate - ✅
+   npx prisma migrate dev
+3. generate - ✅
+4. write query - ✅
+
 # Prisma ORM vs Sequelize vs TypeORM
 
 ## 1. Comparison: Prisma vs Sequelize vs TypeORM
