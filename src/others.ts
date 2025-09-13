@@ -48,7 +48,10 @@ async function others() {
   // Retrive all data
   const users = await prisma.user.findMany({
     where: {
-      name: "Raufur2",
+      name: {
+        contains: "is",
+        mode: "insensitive",
+      },
     },
     orderBy: {
       //   id: "asc",
