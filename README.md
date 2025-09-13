@@ -10,6 +10,11 @@
 2. findMany - array of object
 3. findUnique - return single object
 4. findUniqueOrThrow - return single object if exist, otherwise throw error
+5. update
+6. updateMany
+7. updateManyAndReturn
+8. delete
+9. deleteMany
 
 # Prisma ORM vs Sequelize vs TypeORM
 

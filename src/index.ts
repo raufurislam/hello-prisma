@@ -33,17 +33,34 @@ async function main() {
   //   },
   // });
   // console.log(updatedUser);
-  // const usersData = await prisma.user.findMany();
-  // console.log(usersData);
-  const updatedProfilePhoto = await prisma.user.updateManyAndReturn({
+  // const updatedProfilePhoto = await prisma.user.updateManyAndReturn({
+  //   where: {
+  //     profilePhoto: "abcdefghijklmnopqrstuvwxyz",
+  //   },
+  //   data: {
+  //     profilePhoto: "https://ibb.co.com/x8JDbCbF",
+  //   },
+  // });
+  // console.log(updatedProfilePhoto);
+  // Delete
+  // const deleteUser = await prisma.user.delete({
+  //   where: {
+  //     id: 3,
+  //   },
+  // });
+  // console.log(deleteUser);
+
+  const deleteUser = await prisma.user.deleteMany({
     where: {
-      profilePhoto: "abcdefghijklmnopqrstuvwxyz",
-    },
-    data: {
-      profilePhoto: "https://ibb.co.com/x8JDbCbF",
+      id: {
+        gt: 2,
+      },
     },
   });
-  console.log(updatedProfilePhoto);
+  console.log(deleteUser);
+
+  const usersData = await prisma.user.findMany();
+  console.log(usersData);
 }
 
 main();
