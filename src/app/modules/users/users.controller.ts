@@ -1,12 +1,20 @@
-import type { Request, Response } from "express";
-import { UserService } from "./users.service";
+import { Request, Response } from "express";
+import { catchAsync } from "../../utils/catchAsync";
+import { UserServices } from "./users.service";
+import { sendResponse } from "../../utils/sendResponse";
+import httpStatus from "http-status-codes";
 
-export class UserController {
-  async createUser(req: Request, res: Response) {
-    try {
-      const user = UserService.createUser(req.body);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-}
+const createUser = catchAsync(async (req: Request, res: Response) => {
+  const user = await UserServices.createUser(req.body);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.CREATED,
+    message: "User Created Successfully",
+    data: user,
+  });
+});
+
+export const userController = {
+  createUser,
+};
