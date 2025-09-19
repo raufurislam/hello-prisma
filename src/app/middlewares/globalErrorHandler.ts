@@ -9,6 +9,7 @@ import { handleCastError } from "../helpers/handleCastError";
 import { handleZodError } from "../helpers/handleZodError";
 import { handleValidationError } from "../helpers/handleValidationError";
 import AppError from "../errorHelpers/AppError";
+import { handlePrismaError } from "../helpers/handlePrismaError";
 
 export const globalErrorHandler = async (
   err: any,
@@ -24,8 +25,18 @@ export const globalErrorHandler = async (
   let statusCode = 500;
   let message = "Something Went Wrong!!";
 
-  // Duplicate error
-  if (err.code === 11000) {
+  // Prisma known/validation errors
+  if (
+    err?.name?.startsWith("PrismaClient") ||
+    (typeof err?.code === "string" && err.code.startsWith("P"))
+  ) {
+    const simplifiedError = handlePrismaError(err);
+    statusCode = simplifiedError.statusCode;
+    message = simplifiedError.message;
+  }
+
+  // Duplicate error (likely MongoDB, kept for compatibility)
+  else if (err.code === 11000) {
     const simplifiedError = handleDuplicateError(err);
 
     statusCode = simplifiedError.statusCode;
