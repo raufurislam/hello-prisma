@@ -80,12 +80,9 @@
 
 /* eslint-disable no-console */
 import { Server } from "http";
-import dotenv from "dotenv";
 import app from "./app";
 import { prisma } from "./app/config/db";
-// import { seedSuperAdmin } from "./app/utils/seedSuperAdmin";
-
-dotenv.config();
+import { envVars } from "./app/config/env";
 
 let server: Server;
 
@@ -93,9 +90,10 @@ const startServer = async () => {
   try {
     await prisma.$connect();
     console.log("Connected to DB");
+    console.log(envVars.DATABASE_URL, "database url");
 
-    server = app.listen(process.env.PORT || 3000, () => {
-      console.log(`Server is running on port ${process.env.PORT || 3000}`);
+    server = app.listen(envVars.PORT || 5000, () => {
+      console.log(`Server is running on port ${envVars.PORT || 5000}`);
     });
   } catch (error) {
     console.log(error);

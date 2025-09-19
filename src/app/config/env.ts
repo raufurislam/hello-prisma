@@ -3,12 +3,19 @@ import dotenv from "dotenv";
 dotenv.config();
 
 interface EnvConfig {
+  PORT: string;
   NODE_ENV: "development" | "production";
   DATABASE_URL: string;
+  FRONTEND_URL: string;
 }
 
 const loadEnvVariables = (): EnvConfig => {
-  const requiredEnvVariables: string[] = ["PORT", "DATABASE_URL", "NODE_ENV"];
+  const requiredEnvVariables: string[] = [
+    "PORT",
+    "DATABASE_URL",
+    "NODE_ENV",
+    "FRONTEND_URL",
+  ];
 
   requiredEnvVariables.forEach((key) => {
     if (!process.env[key]) {
@@ -16,9 +23,10 @@ const loadEnvVariables = (): EnvConfig => {
     }
   });
   return {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    DATABASE_URL: process.env.DB_URL!,
+    PORT: process.env.PORT as string,
+    DATABASE_URL: process.env.DATABASE_URL!,
     NODE_ENV: process.env.NODE_ENV as "development" | "production",
+    FRONTEND_URL: process.env.FRONTEND_URL as string,
   };
 };
 
