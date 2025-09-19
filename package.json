@@ -17,10 +17,12 @@
   "type": "commonjs",
   "dependencies": {
     "@prisma/client": "^6.16.2",
+    "@types/http-status-codes": "^1.2.0",
     "compression": "^1.8.1",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "http": "^0.0.1-security",
+    "http-status-codes": "^2.3.0",
     "ts-node-dev": "^2.0.0"
   },
   "devDependencies": {
