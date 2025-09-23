@@ -16,6 +16,30 @@ const castVote = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getPollResult = catchAsync(async (req: Request, res: Response) => {
+  const data = await VotesServices.getPollResult(req.params.pollId);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.CREATED,
+    message: "All Poll Retrieve Successfully",
+    data,
+  });
+});
+
+const getPollWinner = catchAsync(async (req: Request, res: Response) => {
+  const data = await VotesServices.getPollWinner(req.params.pollId);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.CREATED,
+    message: "All Poll Retrieve Successfully",
+    data,
+  });
+});
+
 export const VotesControllers = {
   castVote,
+  getPollResult,
+  getPollWinner,
 };
