@@ -37,7 +37,7 @@ model Poll {
 
 model Option {
   id     String @id @default(ulid())
-  title  String
+  text   String
   pollId String
   poll   Poll   @relation(fields: [pollId], references: [id])
 }

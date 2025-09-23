@@ -6,7 +6,7 @@ const createPoll = async (data: Poll & { options: Option }) => {
 
   const optionsArray = Array.isArray(options) ? options : [];
 
-  await prisma.poll.create({
+  return await prisma.poll.create({
     data: {
       title,
       creatorId,
@@ -18,6 +18,14 @@ const createPoll = async (data: Poll & { options: Option }) => {
   });
 };
 
+const getPolls = async () => {
+  return await prisma.poll.findMany({
+    orderBy: { createdAt: "desc" },
+    include: { options: true, creator: true }, // adds consistency. but when needed lighter payload then don't show more meaningful
+  });
+};
+
 export const PollServices = {
   createPoll,
+  getPolls,
 };
